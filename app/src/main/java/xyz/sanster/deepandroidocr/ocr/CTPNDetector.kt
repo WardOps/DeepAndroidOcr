@@ -181,7 +181,7 @@ class CTPNDetector {
             if (successionIndices.isEmpty()) continue
 
             val aa = successionIndices.map { Pair(it, keepedScores[it]) }
-            val bb = aa.maxBy { it.second }
+            val bb = aa.maxByOrNull { it.second }
             val maxScoreSuccessionIndex = bb!!.first
 
 
@@ -191,7 +191,7 @@ class CTPNDetector {
 
             val maxScorePrecursorIndex =
                     precursorIndices.map { IndexedValue(it, keepedScores[it]) }
-                            .maxBy { it.value }!!.index
+                            .maxByOrNull { it.value }!!.index
 
             val precursorMaxScore = keepedScores[maxScorePrecursorIndex]
 
@@ -221,10 +221,10 @@ class CTPNDetector {
                     val lineAnchors = indices.map { keepedAnchors[it] }
                     val score = indices.map { keepedScores[it] }.sum() / indices.size
                     val offset = (lineAnchors[0].x2 - lineAnchors[0].x1) * 0.5
-                    val x1 = lineAnchors.minBy { it.x1 }!!.x1 / scale
-                    val x2 = lineAnchors.maxBy { it.x2 }!!.x2 / scale
-                    val y1 = lineAnchors.minBy { it.y1 }!!.y1 / scale
-                    val y2 = lineAnchors.maxBy { it.y2 }!!.y2 / scale
+                    val x1 = lineAnchors.minByOrNull { it.x1 }!!.x1 / scale
+                    val x2 = lineAnchors.maxByOrNull { it.x2 }!!.x2 / scale
+                    val y1 = lineAnchors.minByOrNull { it.y1 }!!.y1 / scale
+                    val y2 = lineAnchors.maxByOrNull{ it.y2 }!!.y2 / scale
                     val roi = Rect(x1.toInt(), y1.toInt(), x2.toInt(), y2.toInt())
                     rois.add(roi)
                     outscores.add(score)
