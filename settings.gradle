@@ -1,2 +1,4 @@
 include ':app'
 include ':openCVLibrary340'
+include ':FlexLayout:library'
+project(':FlexLayout:library').projectDir = file('../FlexLayout/library')

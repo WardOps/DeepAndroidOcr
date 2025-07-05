@@ -59,7 +59,7 @@ dependencies {
     androidTestImplementation fileTree(include: ['*.jar'], dir: 'libs')
     androidTestImplementation project(':openCVLibrary340')
     implementation files('libs/core-3.0.0.jar')
-    implementation 'com.github.mmin18:flexlayout:1.2.7'
+    implementation project(':FlexLayout:library')
 
     implementation 'org.tensorflow:tensorflow-android:1.9.0'
     testImplementation 'org.tensorflow:tensorflow-android:1.9.0'
