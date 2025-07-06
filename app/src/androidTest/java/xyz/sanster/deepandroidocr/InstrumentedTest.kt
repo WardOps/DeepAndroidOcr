@@ -1,8 +1,8 @@
 package xyz.sanster.deepandroidocr
 
 import android.content.Context
-import android.support.test.InstrumentationRegistry
-import android.support.test.runner.AndroidJUnit4
+import androidx.test.platform.app.InstrumentationRegistry
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import android.util.Log
 import xyz.sanster.deepandroidocr.ocr.CRNNRecoginzer
 import xyz.sanster.deepandroidocr.ocr.CTPNDetector
@@ -59,7 +59,7 @@ class InstrumentedTest {
 
     @Test
     fun testCTPN() {
-        val appContext = InstrumentationRegistry.getTargetContext()
+        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         val img = loadAssetImg(appContext, "001.jpg")
 
 //        val bitmap = BitmapFactory.decodeStream(imgInputStream)
@@ -74,7 +74,7 @@ class InstrumentedTest {
 
     @Test
     fun testCRNN() {
-        val appContext = InstrumentationRegistry.getTargetContext()
+        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         val crnn = CRNNRecoginzer(appContext, "simple_mobile_crnn.pb", "chn.txt")
 
 //        val imgNames = arrayOf("chn1.jpg", "chn1.jpg", "chn2.jpg", "chn2.jpg", "chn2.jpg")
@@ -113,7 +113,7 @@ class InstrumentedTest {
 
     @Test
     fun testBatchCRNN() {
-        val appContext = InstrumentationRegistry.getTargetContext()
+        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         val crnn = CRNNRecoginzer(appContext, "simple_mobile_crnn.pb", "chn.txt")
 
 //        val imgNames = arrayOf("chn1.jpg", "chn2.jpg", "chn2.jpg", "chn2.jpg")
@@ -155,7 +155,7 @@ class InstrumentedTest {
 
     @Test
     fun testEngCRNN() {
-        val appContext = InstrumentationRegistry.getTargetContext()
+        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         val crnn = CRNNRecoginzer(appContext, "raw_eng_crnn.pb", "eng.txt")
 
         val imgNames = arrayOf("eng1.jpg", "eng2.jpg")
@@ -171,7 +171,7 @@ class InstrumentedTest {
 
     @Test
     fun readCharsFile() {
-        val appContext = InstrumentationRegistry.getTargetContext()
+        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         val chars = Util.readChars(appContext, "chn.txt")
         Log.d(TAG, "chars count: ${chars?.size}")
         assertEquals(chars?.size, 5071)

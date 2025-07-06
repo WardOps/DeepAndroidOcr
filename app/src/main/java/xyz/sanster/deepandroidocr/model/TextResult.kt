@@ -16,8 +16,8 @@ class TextResult() : Parcelable {
     }
 
     constructor(parcel: Parcel) : this() {
-        this.words = parcel.readString()
-        this.location = parcel.readParcelable(Rect::class.java.classLoader)
+        this.words = parcel.readString() ?: ""
+        this.location = parcel.readParcelable(Rect::class.java.classLoader) ?: Rect()
         this.score = parcel.readFloat()
     }
 

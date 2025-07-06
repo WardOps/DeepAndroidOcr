@@ -47,7 +47,7 @@ class CaptureActivityHandler internal constructor(private val activity: MainActi
                 val bundle = message.data
                 if (bundle != null) {
                     val compressedBitmap = bundle.getByteArray(DecodeThread.DETECT_BITMAP)
-                    val wordsResults: ArrayList<TextResult> = bundle.getParcelableArrayList(DecodeThread.WORDS_RESULT)
+                    val wordsResults = bundle.getParcelableArrayList<TextResult>(DecodeThread.WORDS_RESULT) ?: arrayListOf()
 
                     activity.handleResult(compressedBitmap, wordsResults)
                 }

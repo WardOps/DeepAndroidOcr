@@ -20,17 +20,17 @@ internal class DecodeHandler(private val activity: MainActivity) : Handler() {
         private val TAG = DecodeHandler::class.java.simpleName
     }
 
-    override fun handleMessage(message: Message?) {
-        if (message == null || !running) {
+    override fun handleMessage(msg: Message) { // <-- Correct signature
+        if (!running) {
             return
         }
-        when (message.what) {
+        when (msg.what) {
             R.id.detect -> {
-                detect(message.obj as ByteArray, message.arg1, message.arg2)
+                detect(msg.obj as ByteArray, msg.arg1, msg.arg2)
             }
             R.id.quit -> {
                 running = false
-                Looper.myLooper()!!.quit()
+                Looper.myLooper()?.quit()
             }
         }
     }
